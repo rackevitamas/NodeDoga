@@ -1,6 +1,5 @@
 import express from 'express';
 import path from 'path';
-import { start } from 'repl';
 import { fileURLToPath } from 'url';
 
 const PORT = 3000;
@@ -22,7 +21,7 @@ app.get('/express', (req, res) => {
 });
 
 
-app.get('/greeting ', (req, res) => {
+app.get('/greeting', (req, res) => {
     res.send("Hello,  John Doe");
 });
 
