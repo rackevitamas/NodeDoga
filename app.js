@@ -43,8 +43,8 @@ app.get('/api/users', (req, res) => {
 
 app.get('/api/users/:id', (req, res) => {
     const id = req.params.id;
-    const [users] = users.filter(e => e.id == id);
-    if (!users) {
+    const [fel] = users.filter(e => e.id == id);
+    if (!fel) {
         return res.status(404).json({message: "User not found"});
     }
     res.status(200).json(users);
@@ -62,18 +62,21 @@ app.post('/api/users', (req, res) => {
 app.put("/api/users/:id", (req, res) => {
     const id = req.params.id;
     const name = req.body.name;
-    const [user] = users.filter(e => e.id == id);
-    if (!user) {
+    const [fel] = users.filter(e => e.id == id);
+    if (!fel) {
         return res.status(404).json({message: "User not found"})
     }
-    user.name = name;
-    users[users.indexOf(user)] = user;
-    res.status(200).json(user);
+    fel.name = name;
+    users[users.indexOf(fel)] = fel;
+    res.status(200).json(fel);
 });
 
 app.delete('/api/users', (req, res) => {
     const id = req.params.id;
     const user = users.filter(e => e.id == id);
+    if (user.length == 0) {
+        return res.sendStatus(404).json({message: "User not found"});
+    }
     res.sendStatus(204);
 })
 
